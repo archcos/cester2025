@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/SETUP_logo.webp';
+import setupLogo from '../../assets/CESTlogo.webp';
 import { Link, usePage } from '@inertiajs/react';
 import {
   ChevronDown,

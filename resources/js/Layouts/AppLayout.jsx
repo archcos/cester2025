@@ -8,7 +8,7 @@ export default function AppLayout({ children, title = "Dashboard" }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-100 to-blue-400">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-100 to-green-600">
       <Head title={title} />
 
       <div className="flex flex-1 min-h-screen">
@@ -36,7 +36,7 @@ export default function AppLayout({ children, title = "Dashboard" }) {
     {/* Left: Organization Info */}
     <div className="text-center md:text-left">
       <p className="font-semibold text-white">DOST Northern Mindanao</p>
-      <p>Small Enterprise Technology Upgrading Program</p>
+      <p>Community Empowerment Thru Science and Technology</p>
     </div>
 
     {/* Center: Contact Info */}
@@ -45,7 +45,7 @@ export default function AppLayout({ children, title = "Dashboard" }) {
         <Phone className="w-4 h-4" /> +63 88 856-1889
       </div>
       <div className="flex items-center gap-1">
-        <Mail className="w-4 h-4" /> setup@region10.dost.gov.ph
+        <Mail className="w-4 h-4" /> cest@region10.dost.gov.ph
       </div>
     </div>
 
@@ -54,7 +54,7 @@ export default function AppLayout({ children, title = "Dashboard" }) {
       <a href="/contact" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-white">
         <Mail className="w-4 h-4" /> Contact Us
       </a>
-      <Link href="/about" className="hover:text-white">About SETUP</Link>
+      <Link href="/about" className="hover:text-white">About CEST</Link>
       <div className="flex items-center gap-1">
         <Link href="/privacy" className="hover:text-white">Privacy</Link>
         <span className="text-gray-500">|</span>

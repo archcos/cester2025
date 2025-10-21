@@ -9,7 +9,7 @@ export default function Header({ sidebarOpen, toggleSidebar }) {
   const [displayText, setDisplayText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
 
-  const fullText = "  Small Enterprise Technology Upgrading Program Digital System";
+  const fullText = "  Community Empowerment Thru Science and Technology Digital System";
 
   const { auth, notifications = [] } = usePage().props;
 
@@ -54,7 +54,7 @@ export default function Header({ sidebarOpen, toggleSidebar }) {
   }, []);
 
   return (
-    <header className="bg-blue-100 border-b px-6 py-4 flex items-center justify-between shadow-sm">
+    <header className="bg-green-100 border-b px-6 py-4 flex items-center justify-between shadow-sm">
       <button
         onClick={toggleSidebar}
         className="text-gray-600 hover:text-gray-900 focus:outline-none mr-4"
@@ -108,7 +108,7 @@ export default function Header({ sidebarOpen, toggleSidebar }) {
                     <li
                       key={index}
                       className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                        !notif.is_read ? 'bg-blue-50' : 'bg-white'
+                        !notif.is_read ? 'bg-green-50' : 'bg-white'
                       }`}
                      onClick={() => {
                         router.post(`/notifications/read/${notif.notification_id}`, {}, {

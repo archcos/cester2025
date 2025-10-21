@@ -44,7 +44,7 @@ export default function Home() {
       { width: 'w-1/6', color: 'bg-gradient-to-r from-yellow-500 to-yellow-600', textColor: 'text-yellow-700', bgColor: 'bg-yellow-50' },
       { width: 'w-2/6', color: 'bg-gradient-to-r from-orange-500 to-orange-600', textColor: 'text-orange-700', bgColor: 'bg-orange-50' },
       { width: 'w-7/12', color: 'bg-gradient-to-r from-purple-500 to-purple-600', textColor: 'text-purple-700', bgColor: 'bg-purple-50' },
-      { width: 'w-2/3', color: 'bg-gradient-to-r from-blue-500 to-blue-600', textColor: 'text-blue-700', bgColor: 'bg-blue-50' },
+      { width: 'w-2/3', color: 'bg-gradient-to-r from-green-500 to-green-600', textColor: 'text-green-700', bgColor: 'bg-green-50' },
       { width: 'w-5/6', color: 'bg-gradient-to-r from-teal-500 to-teal-600', textColor: 'text-teal-700', bgColor: 'bg-teal-50' },
       { width: 'w-full', color: 'bg-gradient-to-r from-green-500 to-green-600', textColor: 'text-green-700', bgColor: 'bg-green-50' },
     ];
@@ -61,7 +61,7 @@ export default function Home() {
     const stageIndex = stages.indexOf(stage);
     
     if (stageIndex < currentIndex) return <CheckCircle className="w-3 h-3 text-green-500" />;
-    if (stageIndex === currentIndex) return <Clock className="w-3 h-3 text-blue-500" />;
+    if (stageIndex === currentIndex) return <Clock className="w-3 h-3 text-green-500" />;
     return <div className="w-3 h-3 rounded-full border border-gray-300" />;
   };
 
@@ -79,7 +79,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto space-y-4">
             {/* Compact Header */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-sm">
+              <div className="p-2 bg-gradient-to-r from-green-500 to-green-600 rounded-lg shadow-sm">
                 <BarChart3 className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -92,8 +92,8 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
               <div className="bg-white rounded-lg shadow-md p-4 border border-gray-100">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <Briefcase className="w-4 h-4 text-blue-600" />
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Briefcase className="w-4 h-4 text-green-600" />
                   </div>
                   <div>
                     <p className="text-xs font-medium text-gray-500">Total Projects</p>
@@ -143,8 +143,8 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-md p-5 border border-gray-100">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-blue-100 rounded-md">
-                    <Building2 className="w-4 h-4 text-blue-600" />
+                  <div className="p-1.5 bg-green-100 rounded-md">
+                    <Building2 className="w-4 h-4 text-green-600" />
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold text-gray-900">
@@ -162,7 +162,7 @@ export default function Home() {
                   <select
                     value={selectedYear}
                     onChange={handleYearChange}
-                    className="pl-2 pr-6 py-1 text-sm border border-gray-200 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className="pl-2 pr-6 py-1 text-sm border border-gray-200 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white"
                   >
                     {availableYears.map((year) => (
                       <option key={year} value={year}>
@@ -185,7 +185,7 @@ export default function Home() {
                         <p className="text-xs text-gray-600">{count} project{count !== 1 ? 's' : ''}</p>
                       </div>
                     </div>
-                    <div className="px-2 py-1 bg-blue-100 text-blue-700 rounded-md text-xs font-medium">
+                    <div className="px-2 py-1 bg-green-100 text-green-700 rounded-md text-xs font-medium">
                       {count}
                     </div>
                   </div>
@@ -257,7 +257,7 @@ export default function Home() {
                                   key={stage}
                                   className={`flex flex-col items-center p-2 rounded-md text-center transition-all duration-200 ${
                                     isCompleted ? 'bg-green-50 border border-green-200' :
-                                    isCurrent ? 'bg-blue-50 border border-blue-200' :
+                                    isCurrent ? 'bg-green-50 border border-green-200' :
                                     'bg-gray-50 border border-gray-200'
                                   }`}
                                 >
@@ -266,7 +266,7 @@ export default function Home() {
                                   </div>
                                   <span className={`text-xs font-medium ${
                                     isCompleted ? 'text-green-700' :
-                                    isCurrent ? 'text-blue-700' :
+                                    isCurrent ? 'text-green-700' :
                                     'text-gray-500'
                                   }`}>
                                     {stage.split(' ').slice(0, 2).join(' ')}

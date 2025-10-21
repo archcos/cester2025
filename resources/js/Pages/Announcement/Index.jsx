@@ -22,7 +22,7 @@ export default function Index({ announcements, userRole }) {
        
                         <Link
                             href="/announcements/create"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-green-600 hover:to-green-700 transition-all duration-200"
                         >
                             <Plus className="w-5 h-5" />
                             Add Announcement
@@ -77,7 +77,7 @@ export default function Index({ announcements, userRole }) {
                                         <td className="px-6 py-4 flex gap-3">
                                             <Link
                                                 href={`/announcements/${a.announce_id}/edit`}
-                                                className="text-blue-600 hover:text-blue-800"
+                                                className="text-green-600 hover:text-green-800"
                                             >
                                                 <Edit className="w-5 h-5" />
                                             </Link>

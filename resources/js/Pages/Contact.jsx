@@ -12,7 +12,7 @@ import {
   BookMarked
 } from 'lucide-react';
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/SETUP_logo.webp';
+import setupLogo from '../../assets/CESTlogo.webp';
 
 export default function ContactUs() {
   const [successMessage, setSuccessMessage] = useState('');

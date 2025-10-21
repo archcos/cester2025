@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, Link, Head, usePage, router } from '@inertiajs/react';
 import { Eye, EyeOff, User, Lock, AlertCircle, Megaphone, Mail, Shield, CheckCircle } from 'lucide-react';
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/SETUP_logo.webp';
+import setupLogo from '../../assets/CESTlogo.webp';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function LoginPage() {
@@ -53,7 +53,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <Head title="Login - DOST SETUP" />
+      <Head title="Login - DOST CEST" />
       
       {/* Loading Overlay */}
       {isAuthenticating && (
@@ -63,15 +63,15 @@ export default function LoginPage() {
               {/* Animated Icon Sequence */}
               <div className="relative w-24 h-24">
                 {/* Rotating Ring */}
-                <div className="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-t-blue-600 rounded-full animate-spin"></div>
+                <div className="absolute inset-0 border-4 border-green-200 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-t-green-600 rounded-full animate-spin"></div>
                 
                 {/* Center Icons with Animation */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative">
                     <Shield 
                       size={32} 
-                      className="text-blue-600 animate-pulse"
+                      className="text-green-600 animate-pulse"
                     />
                     <Mail 
                       size={16} 
@@ -84,22 +84,22 @@ export default function LoginPage() {
               {/* Progress Steps */}
               <div className="w-full space-y-3">
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
                   <span className="text-gray-700 font-medium">Verifying credentials...</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-150"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse delay-150"></div>
                   <span className="text-gray-600">Generating OTP code...</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <div className="w-2 h-2 bg-blue-300 rounded-full animate-pulse delay-300"></div>
+                  <div className="w-2 h-2 bg-green-300 rounded-full animate-pulse delay-300"></div>
                   <span className="text-gray-500">Sending email...</span>
                 </div>
               </div>
 
               {/* Loading Bar */}
               <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full animate-loading-bar"></div>
+                <div className="h-full bg-gradient-to-r from-green-500 to-teal-600 rounded-full animate-loading-bar"></div>
               </div>
 
               <p className="text-sm text-gray-500 text-center">
@@ -141,7 +141,7 @@ export default function LoginPage() {
         </div>
       )}
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-indigo-300 flex items-center justify-center px-4 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-green-200 via-white to-teal-300 flex items-center justify-center px-4 py-8">
         <div className="w-full max-w-md">
           {/* Main Login Card */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-6">
@@ -157,14 +157,14 @@ export default function LoginPage() {
                   DOST - Northern Mindanao
                 </h2>
                 <h3 className="text-sm text-gray-600 font-medium leading-relaxed">
-                  Small Enterprise Technology Upgrading Program
+                  Community Empowerment Thru Science and Technology
                 </h3>
               </div>
             </div>
 
             <div className="text-center mb-2">
               <p className="text-gray-600">
-                Sign in to your SETUP account
+                Sign in to your CEST account
               </p>
             </div>
 
@@ -201,7 +201,7 @@ export default function LoginPage() {
                     className={`w-full border pl-10 pr-4 py-3.5 rounded-xl transition-colors ${
                       errors.username 
                         ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                        : 'border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        : 'border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500'
                     } disabled:bg-gray-50 disabled:cursor-not-allowed`}
                     required
                   />
@@ -231,7 +231,7 @@ export default function LoginPage() {
                     className={`w-full border pl-10 pr-12 py-3.5 rounded-xl transition-colors ${
                       errors.password 
                         ? 'border-red-300 focus:ring-red-500 focus:border-red-500' 
-                        : 'border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        : 'border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500'
                     } disabled:bg-gray-50 disabled:cursor-not-allowed`}
                     required
                   />
@@ -256,7 +256,7 @@ export default function LoginPage() {
               <div className="flex justify-end">
                 <Link
                   href="/contact"
-                  className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                  className="text-sm text-green-600 hover:text-green-700 hover:underline transition-colors"
                 >
                   Forgot your password?
                 </Link>
@@ -267,8 +267,8 @@ export default function LoginPage() {
                 disabled={processing || isAuthenticating}
                 className={`w-full ${
                   processing || isAuthenticating
-                    ? 'bg-blue-400 cursor-not-allowed' 
-                    : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-[0.98]'
+                    ? 'bg-green-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 active:scale-[0.98]'
                 } text-white py-3.5 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl`}
               >
                 {processing || isAuthenticating ? (
@@ -290,7 +290,7 @@ export default function LoginPage() {
                 Don't have an account?{' '}
                 <Link
                   href="/register"
-                  className="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-colors"
+                  className="text-green-600 hover:text-green-700 font-semibold hover:underline transition-colors"
                 >
                   Create Account
                 </Link>

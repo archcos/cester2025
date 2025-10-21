@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
 import { Megaphone, Building2, Filter, Calendar, AlertCircle, ArrowLeft, Clock } from "lucide-react";
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/SETUP_logo.webp';
+import setupLogo from '../../assets/CESTlogo.webp';
 
 export default function Announcements({ announcements = [], old_announcements = [], offices = [] }) {
   const [selectedOffice, setSelectedOffice] = useState("");
@@ -32,7 +32,7 @@ export default function Announcements({ announcements = [], old_announcements = 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-indigo-300">
+    <div className="min-h-screen bg-white">
       <Head title="Announcements" />
 
       {/* Header */}
@@ -64,7 +64,7 @@ export default function Announcements({ announcements = [], old_announcements = 
         {/* Header with filter & old toggle */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl shadow-lg">
+            <div className="p-3 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl shadow-lg">
               <Megaphone className="w-8 h-8 text-white" />
             </div>
             <div>
@@ -114,13 +114,13 @@ export default function Announcements({ announcements = [], old_announcements = 
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                   <h2 className="text-2xl font-bold text-gray-800">{a.title}</h2>
-                  <div className="flex items-center gap-2 text-sm text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                  <div className="flex items-center gap-2 text-sm text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-100">
                     <Building2 className="w-4 h-4" />
                     {getOfficeName(a.office_id)}
                   </div>
                 </div>
 
-                <div className="mt-3 bg-gray-50 rounded-xl p-4 border-l-4 border-blue-500">
+                <div className="mt-3 bg-gray-50 rounded-xl p-4 border-l-4 border-green-500">
                   <p className="text-gray-700 whitespace-pre-wrap">{a.details}</p>
                 </div>
               </div>

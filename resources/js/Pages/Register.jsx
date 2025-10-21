@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, router, Head, useForm } from '@inertiajs/react'; 
 import { Eye, EyeOff, User, Mail, Lock, Building2, CheckCircle } from 'lucide-react';
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/SETUP_logo.webp';
+import setupLogo from '../../assets/CESTlogo.webp';
 
 const InputError = ({ error }) =>
   error ? <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -41,7 +41,7 @@ export default function RegisterPage({ offices }) {
   };
 
   return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-indigo-300 flex items-center justify-center px-4 py-8">
+      <div className="min-h-screen bg-gradient-to-br from-green-200 via-white to-teal-300 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
         <Head title="Registration - DOST SETUP" />
         {/* Header Card */}
@@ -57,7 +57,7 @@ export default function RegisterPage({ offices }) {
             <div className="flex flex-col items-center text-center space-y-1">
               <h2 className="text-lg font-bold text-gray-900 tracking-tight">DOST - Northern Mindanao</h2>
               <h3 className="text-sm text-gray-600 font-medium leading-relaxed">
-                Small Enterprise Technology Upgrading Program
+                  Community Empowerment Thru Science and Technology
               </h3>
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function RegisterPage({ offices }) {
               Create Your Account
             </h1>
             <p className="text-gray-600">
-              Join SETUP and get started with your projects
+              Join CEST and get started with your projects
             </p>
           </div>
 
@@ -94,7 +94,7 @@ export default function RegisterPage({ offices }) {
                     maxLength={20}
                     placeholder="First Name"
                     disabled={processing}
-                    className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                    className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                     required
                   />
                 </div>
@@ -112,7 +112,7 @@ export default function RegisterPage({ offices }) {
                     maxLength={20}
                     placeholder="Last Name & Ext."
                     disabled={processing}
-                    className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                    className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                     required
                   />
                 </div>
@@ -132,7 +132,7 @@ export default function RegisterPage({ offices }) {
                   maxLength={20}
                   placeholder="Middle Name (optional)"
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                 />
               </div>
               <InputError error={errors.middle_name} />
@@ -161,7 +161,7 @@ export default function RegisterPage({ offices }) {
                   onChange={handleChange}
                   placeholder="Username"
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                   maxLength={12}
                   required
                 />
@@ -180,7 +180,7 @@ export default function RegisterPage({ offices }) {
                   onChange={handleChange}
                   placeholder="Email Address"
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
                 />
               </div>
@@ -196,7 +196,7 @@ export default function RegisterPage({ offices }) {
                   value={data.office_id}
                   onChange={handleChange}
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors appearance-none bg-white disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors appearance-none bg-white disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
                 >
                   <option value="">Select Your Office</option>
@@ -226,7 +226,7 @@ export default function RegisterPage({ offices }) {
                   onChange={handleChange}
                   placeholder="Password"
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-12 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-12 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
                 />
                 <button
@@ -252,7 +252,7 @@ export default function RegisterPage({ offices }) {
                   onChange={handleChange}
                   placeholder="Confirm Password"
                   disabled={processing}
-                  className="w-full border border-gray-300 pl-10 pr-12 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  className="w-full border border-gray-300 pl-10 pr-12 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors disabled:bg-gray-50 disabled:cursor-not-allowed"
                   required
                 />
                 <button
@@ -272,8 +272,8 @@ export default function RegisterPage({ offices }) {
               disabled={processing}
               className={`w-full ${
                 processing 
-                  ? 'bg-blue-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-[0.98]'
+                  ? 'bg-green-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 active:scale-[0.98]'
               } text-white py-3 rounded-xl font-semibold transition-all duration-200 shadow-lg hover:shadow-xl`}
             >
               {processing ? (
@@ -295,7 +295,7 @@ export default function RegisterPage({ offices }) {
               Already have an account?{' '}
               <Link
                 href="/"
-                className="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-colors"
+                className="text-green-600 hover:text-green-700 font-semibold hover:underline transition-colors"
               >
                 Sign In
               </Link>
