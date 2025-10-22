@@ -19,6 +19,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RefundController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ProposalController;
 
 Route::middleware(['redirectIfAuthenticated'])->group(function () {
     // Register
@@ -51,6 +52,15 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::prefix('proposals')->group(function () {
+    Route::get('/', [ProposalController::class, 'index'])->name('proposals.index');
+    Route::get('/create/{program_id}', [ProposalController::class, 'create'])->name('proposals.create');
+    Route::post('/create/{program_id}', [ProposalController::class, 'store'])->name('proposals.store');
+    Route::get('/{id}', [ProposalController::class, 'show'])->name('proposals.show');
+    Route::get('/{id}/edit', [ProposalController::class, 'edit'])->name('proposals.edit');
+    Route::put('/{id}', [ProposalController::class, 'update'])->name('proposals.update');
+    Route::delete('/{id}', [ProposalController::class, 'destroy'])->name('proposals.destroy');
+});
 
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'sendContact'])

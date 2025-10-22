@@ -163,10 +163,8 @@ export default function LoginPage() {
 
               {/* Bottom - Three Logos */}
               <div className="flex items-center justify-center gap-3 flex-wrap mt-2">
-                                                <img src={CESTlogo} alt="CEST Logo" className="h-8 object-contain" />
-
+                <img src={CESTlogo} alt="CEST Logo" className="h-8 object-contain" />
                 <img src={SSCPlogo} alt="SSCP Logo" className="h-10 object-contain" />
-
                 <img src={LGIAlogo} alt="LGIA Logo" className="h-10 object-contain" />
               </div>
             </div>

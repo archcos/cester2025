@@ -38,7 +38,9 @@ import {
   FileInput,
   Check,
   CheckCheck,
-  Stamp
+  Stamp,
+  Files,
+  FilePlus
 } from 'lucide-react';
 
 export default function Sidebar({ isOpen }) {
@@ -46,7 +48,7 @@ export default function Sidebar({ isOpen }) {
     development: false,
     implementation: false,
     reports: false,
-    user: true,
+    proposal: true,
     transaction: true,
     review: false,
     announce: false,
@@ -67,28 +69,27 @@ export default function Sidebar({ isOpen }) {
 
   return (
     <aside className="w-64 bg-white text-gray-800 p-6 transition-all duration-300 min-h-screen shadow-md">
-    <Link
-      href={role === 'user' ? '/dashboard' : '/home'}
-      className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
-    >
-      <img src={logo} alt="DOST Logo" className="w-10 h-10" />
+      <Link
+        href={role === 'user' ? '/dashboard' : '/home'}
+        className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
+      >
+        <img src={logo} alt="DOST Logo" className="w-10 h-10" />
 
-      {/* 🟢 Dynamically show program logo */}
-      <img
-        src={
-          auth?.user?.program_id === 1
-            ? CESTlogo
-            : auth?.user?.program_id === 2
-            ? LGIAlogo
-            : auth?.user?.program_id === 3
-            ? SSCPlogo
-            : CESTlogo // fallback
-        }
-        alt="Program Logo"
-        className="h-10 object-contain"
-      />
-    </Link>
-
+        {/* Dynamically show program logo */}
+        <img
+          src={
+            auth?.user?.program_id === 1
+              ? CESTlogo
+              : auth?.user?.program_id === 2
+              ? LGIAlogo
+              : auth?.user?.program_id === 3
+              ? SSCPlogo
+              : CESTlogo // fallback
+          }
+          alt="Program Logo"
+          className="h-10 object-contain"
+        />
+      </Link>
 
       <nav className="space-y-4">
         <Link
@@ -111,7 +112,8 @@ export default function Sidebar({ isOpen }) {
             ]}
           />
         )}
-        {(role === 'rpmo' || role === 'staff' )&& (
+
+        {(role === 'rpmo' || role === 'staff') && (
           <Dropdown
             title="Development"
             icon={<ChartNoAxesCombined size={18} />}
@@ -121,55 +123,56 @@ export default function Sidebar({ isOpen }) {
               { label: 'Companies', href: '/companies', icon: <Building2 size={16} /> },
               { label: 'Projects', href: '/projects', icon: <ClipboardList size={16} /> },
               { label: 'Activities', href: '/activities', icon: <SquareKanban size={16} /> },
-           
             ]}
           />
         )}
-       {(role === 'rpmo' || role === 'staff') && (
-        <Dropdown
-          title="Review & Approval"
-          icon={<UserCheck2 size={18} />}
-          isOpen={dropdowns.review}
-          onToggle={() => toggleDropdown('review')}
-          links={[
-            { 
-              label: 'Internal RTEC Review', 
-              href: `/review-approval?stage=internal_rtec`, 
-              icon: <FileSymlink size={16} /> 
-            },
-            { 
-              label: 'Internal Compliance', 
-              href: `/review-approval?stage=internal_compliance`, 
-              icon: <Check size={16} /> 
-            },
-            { 
-              label: 'External RTEC Review', 
-              href: `/review-approval?stage=external_rtec`, 
-              icon: <FileInput size={16} /> 
-            },
-            { 
-              label: 'External Compliance', 
-              href: `/review-approval?stage=external_compliance`, 
-              icon: <CheckCheck size={16} /> 
-            },
-            { 
-              label: 'Approval', 
-              href: `/review-approval?stage=approval`, 
-              icon: <Stamp size={16} /> 
-            },
-            { 
-              label: 'Draft MOA', 
-              href: '/draft-moa', 
-              icon: <FileSignature size={16} /> 
-            },
-            { 
-              label: 'MOA List', 
-              href: '/moa', 
-              icon: <FileText size={16} /> 
-            },      
-          ]}
-        />
-)}
+
+        {(role === 'rpmo' || role === 'staff') && (
+          <Dropdown
+            title="Review & Approval"
+            icon={<UserCheck2 size={18} />}
+            isOpen={dropdowns.review}
+            onToggle={() => toggleDropdown('review')}
+            links={[
+              { 
+                label: 'Internal RTEC Review', 
+                href: `/review-approval?stage=internal_rtec`, 
+                icon: <FileSymlink size={16} /> 
+              },
+              { 
+                label: 'Internal Compliance', 
+                href: `/review-approval?stage=internal_compliance`, 
+                icon: <Check size={16} /> 
+              },
+              { 
+                label: 'External RTEC Review', 
+                href: `/review-approval?stage=external_rtec`, 
+                icon: <FileInput size={16} /> 
+              },
+              { 
+                label: 'External Compliance', 
+                href: `/review-approval?stage=external_compliance`, 
+                icon: <CheckCheck size={16} /> 
+              },
+              { 
+                label: 'Approval', 
+                href: `/review-approval?stage=approval`, 
+                icon: <Stamp size={16} /> 
+              },
+              { 
+                label: 'Draft MOA', 
+                href: '/draft-moa', 
+                icon: <FileSignature size={16} /> 
+              },
+              { 
+                label: 'MOA List', 
+                href: '/moa', 
+                icon: <FileText size={16} /> 
+              },      
+            ]}
+          />
+        )}
+
         {role === 'rpmo' && (
           <Dropdown
             title="Implementation"
@@ -183,7 +186,7 @@ export default function Sidebar({ isOpen }) {
           />
         )}
 
-        {(role === 'staff' || role === 'rpmo')  && (
+        {(role === 'staff' || role === 'rpmo') && (
           <Dropdown
             title="Reports"
             icon={<ClipboardPlus size={18} />}
@@ -195,46 +198,42 @@ export default function Sidebar({ isOpen }) {
           />
         )}
 
-      <Dropdown
+        <Dropdown
           title="Announcements"
           icon={<Megaphone size={18} />}
           isOpen={dropdowns.announce}
           onToggle={() => toggleDropdown('announce')}
           links={[
-            ...((role === 'rpmo' ||role === 'head' || role === 'staff')
+            ...((role === 'rpmo' || role === 'head' || role === 'staff')
               ? [{ label: 'Manage Announcement', href: '/announcements', icon: <FilePlus2 size={16} /> }]
               : []),
             {
               label: 'Check Announcements',
               href: '/announcements/view',
               icon: <Eye size={16} />,
-              target: '_blank', // 👈 This makes it open in a new tab
+              target: '_blank',
             },
           ]}
         />
+
+        {/* Fixed: Single Manage Proposals dropdown with dynamic program_id */}
         {role === 'user' && (
           <Dropdown
-            title="Manage Company"
-            icon={<Building size={18} />}
-            isOpen={dropdowns.user}
-            onToggle={() => toggleDropdown('user')}
+            title="Manage Proposals"
+            icon={<Files size={18} />}
+            isOpen={dropdowns.proposal}
+            onToggle={() => toggleDropdown('proposal')}
             links={[
-              { label: 'Companies', href: '/companies', icon: <Users size={16} /> },
-              { label: 'Projects', href: '/project-list', icon: <ClipboardList size={16} /> },
-              { label: 'Activities', href: '/activity-list', icon: <SquareKanban size={16} /> },
-            ]}
-          />
-        )}
-        {role === 'user' && (
-          <Dropdown
-            title="My Transactions"
-            icon={<ArrowLeftRight size={18} />}
-            isOpen={dropdowns.transaction}
-            onToggle={() => toggleDropdown('transaction')}
-            links={[
-              { label: 'Repayment History', href: '/my-refunds', icon: <HandCoins size={16} /> },
-              { label: 'Quarterly Report', href: '/reports', icon: <FileDiff size={16} /> },
-              // { label: 'Repayment History', href: route('refunds.history'), icon: <HandCoins size={16} /> },
+              { 
+                label: 'Create Proposal', 
+                href: `/proposals/create/${auth?.user?.program_id}`, 
+                icon: <FilePlus size={16} /> 
+              },
+              { 
+                label: 'My Proposals', 
+                href: '/proposals', 
+                icon: <FileUser size={16} /> 
+              },
             ]}
           />
         )}
@@ -287,4 +286,3 @@ function Dropdown({ title, icon, isOpen, onToggle, links }) {
     </div>
   );
 }
-
