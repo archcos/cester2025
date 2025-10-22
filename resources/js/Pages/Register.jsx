@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link, router, Head, useForm } from '@inertiajs/react'; 
 import { Eye, EyeOff, User, Mail, Lock, Building2, CheckCircle } from 'lucide-react';
-import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/CESTlogo.webp';
+import dostLogo from '../../assets/logo.webp';
+import LGIAlogo from '../../assets/LGIAlogo.webp';
+import CESTlogo from '../../assets/CESTlogo.webp';
+import SSCPlogo from '../../assets/SSCPlogo.webp';
 
 const InputError = ({ error }) =>
   error ? <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
@@ -20,6 +22,7 @@ export default function RegisterPage({ offices }) {
     password: '',
     confirm_password: '',
     office_id: '',
+    program: '',
     website: '' 
   });
 
@@ -43,21 +46,34 @@ export default function RegisterPage({ offices }) {
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-200 via-white to-teal-300 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
-        <Head title="Registration - DOST SETUP" />
+        <Head title="Registration - DOST Tri-Web" />
         {/* Header Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-6">
-          <div className="flex flex-col items-center justify-center gap-4 mb-8">
-            {/* Logos */}
-            <div className="flex items-center justify-center gap-4">
-                <img src={logo} alt="DOST Logo" className="w-10 h-10 object-contain" />
-                <img src={setupLogo} alt="SETUP Logo" className="h-10 object-contain" />
+           <div className="flex flex-col items-center justify-center gap-4 mb-8">
+            {/* Logo Section */}
+            <div className="flex flex-col items-center justify-center mb-4">
+              {/* Top - DOST Logo */}
+              <img
+                src={dostLogo}
+                alt="DOST Logo"
+                className="w-10 h-10 object-contain mb-2"
+              />
+              <h2 className="text-lg font-bold text-gray-900 tracking-tight">
+                DOST - Northern Mindanao
+              </h2>
+
+              {/* Bottom - Three Logos */}
+              <div className="flex items-center justify-center gap-3 flex-wrap mt-2">
+                <img src={CESTlogo} alt="CEST Logo" className="h-8 object-contain" />
+                <img src={SSCPlogo} alt="SSCP Logo" className="h-10 object-contain" />
+                <img src={LGIAlogo} alt="LGIA Logo" className="h-10 object-contain" />
+              </div>
             </div>
 
-            {/* Text below */}
-            <div className="flex flex-col items-center text-center space-y-1">
-              <h2 className="text-lg font-bold text-gray-900 tracking-tight">DOST - Northern Mindanao</h2>
+            {/* Subtitle */}
+            <div className="flex flex-col items-center text-center mt-1">
               <h3 className="text-sm text-gray-600 font-medium leading-relaxed">
-                  Community Empowerment Thru Science and Technology
+                Tri-Web Digital System
               </h3>
             </div>
           </div>
@@ -67,7 +83,7 @@ export default function RegisterPage({ offices }) {
               Create Your Account
             </h1>
             <p className="text-gray-600">
-              Join CEST and get started with your projects
+              Join Tri-Web and get started with your projects
             </p>
           </div>
 
@@ -214,6 +230,33 @@ export default function RegisterPage({ offices }) {
               </div>
               <InputError error={errors.office_id} />
             </div>
+
+            {/* Program */}
+            <div>
+              <div className="relative">
+                <Building2 size={18} className="absolute left-3 top-3 text-gray-400 z-10" />
+                <select
+                  name="program"
+                  value={data.program}
+                  onChange={handleChange}
+                  disabled={processing}
+                  className="w-full border border-gray-300 pl-10 pr-4 py-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors appearance-none bg-white disabled:bg-gray-50 disabled:cursor-not-allowed"
+                  required
+                >
+                  <option value="">Select Program</option>
+                  <option value="1">LGIA</option>
+                  <option value="2">CEST</option>
+                  <option value="3">SSCP</option>
+                </select>
+                <div className="absolute right-3 top-3 pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              <InputError error={errors.program} />
+            </div>
+
 
             {/* Password */}
             <div>

@@ -79,6 +79,7 @@ class RegisterController extends Controller
                 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/',
             ],
             'office_id'    => 'required|exists:tbl_offices,office_id',
+            'program'      => 'required|exists:tbl_programs,program_id',
             'website'      => 'nullable|string|max:255', //  Honeypot field
         ], [
             'password.regex' => 'Password must contain at least one uppercase letter, one lowercase letter, and one number.',
@@ -86,6 +87,7 @@ class RegisterController extends Controller
             'middle_name.regex' => 'Middle Name must contain letters only.',
             'last_name.regex' => 'Last Name and Extension must contain letters  only.',
             'username.regex' => 'Username must contain only aphanumeric and underscore.',
+            'program.required' => 'Please select a program.',
 
         ]);
 
@@ -117,6 +119,7 @@ class RegisterController extends Controller
             'email'        => $request->email,
             'password'     => Hash::make($request->password),
             'office_id'    => $request->office_id,
+            'program_id'   => $request->program,
             'role'         => 'user',
             'status'       => 'active',
         ]);

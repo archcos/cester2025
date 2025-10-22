@@ -1,15 +1,28 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, usePage  } from "@inertiajs/react";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function AppLayout({ children, title = "Dashboard" }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { props } = usePage();
+  const userProgramId = props?.auth?.user?.program_id;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-100 to-green-600">
-      <Head title={title} />
+        <div
+          className={`min-h-screen flex flex-col bg-gradient-to-br from-slate-100 ${
+            userProgramId === 1
+              ? "to-green-600"
+              : userProgramId === 2
+              ? "to-blue-400"
+              : userProgramId === 3
+              ? "to-orange-500"
+              : "to-green-600"
+          }`}
+        >
+
+        <Head title={title} />
 
       <div className="flex flex-1 min-h-screen">
         {/* Sidebar */}

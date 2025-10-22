@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useForm, Link, Head, usePage, router } from '@inertiajs/react';
 import { Eye, EyeOff, User, Lock, AlertCircle, Megaphone, Mail, Shield, CheckCircle } from 'lucide-react';
-import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/CESTlogo.webp';
+import dostLogo from '../../assets/logo.webp';
+import LGIAlogo from '../../assets/LGIAlogo.webp';
+import CESTlogo from '../../assets/CESTlogo.webp';
+import SSCPlogo from '../../assets/SSCPlogo.webp';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function LoginPage() {
@@ -145,26 +147,42 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Main Login Card */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-6">
-            {/* Header Section */}
-            <div className="flex flex-col items-center justify-center gap-4 mb-8">
-              <div className="flex items-center justify-center gap-4">
-                <img src={logo} alt="DOST Logo" className="w-12 h-12 object-contain" />
-                <img src={setupLogo} alt="SETUP Logo" className="h-12 object-contain" />
-              </div>
+                      {/* Header Section */}
+          <div className="flex flex-col items-center justify-center gap-4 mb-8">
+            {/* Logo Section */}
+            <div className="flex flex-col items-center justify-center mb-4">
+              {/* Top - DOST Logo */}
+              <img
+                src={dostLogo}
+                alt="DOST Logo"
+                className="w-10 h-10 object-contain mb-2"
+              />
+              <h2 className="text-lg font-bold text-gray-900 tracking-tight">
+                DOST - Northern Mindanao
+              </h2>
 
-              <div className="flex flex-col items-center text-center">
-                <h2 className="text-lg font-bold text-gray-900 tracking-tight">
-                  DOST - Northern Mindanao
-                </h2>
-                <h3 className="text-sm text-gray-600 font-medium leading-relaxed">
-                  Community Empowerment Thru Science and Technology
-                </h3>
+              {/* Bottom - Three Logos */}
+              <div className="flex items-center justify-center gap-3 flex-wrap mt-2">
+                                                <img src={CESTlogo} alt="CEST Logo" className="h-8 object-contain" />
+
+                <img src={SSCPlogo} alt="SSCP Logo" className="h-10 object-contain" />
+
+                <img src={LGIAlogo} alt="LGIA Logo" className="h-10 object-contain" />
               </div>
             </div>
 
+            {/* Subtitle */}
+            <div className="flex flex-col items-center text-center mt-1">
+              <h3 className="text-sm text-gray-600 font-medium leading-relaxed">
+                Tri-Web Digital System
+              </h3>
+            </div>
+          </div>
+
+
             <div className="text-center mb-2">
               <p className="text-gray-600">
-                Sign in to your CEST account
+                Sign in to your Tri-Web account
               </p>
             </div>
 

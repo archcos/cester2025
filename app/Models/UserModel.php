@@ -23,6 +23,7 @@ class UserModel extends Authenticatable
         'email',
         'password',
         'office_id',
+        'program_id',
         'role',
         'status'
     ];

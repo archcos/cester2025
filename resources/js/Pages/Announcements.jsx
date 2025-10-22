@@ -1,34 +1,21 @@
 import { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
-import { Megaphone, Building2, Filter, Calendar, AlertCircle, ArrowLeft, Clock } from "lucide-react";
-import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/CESTlogo.webp';
+import { Megaphone, Building2, Clock, ArrowLeft } from "lucide-react";
+import logo from "../../assets/logo.webp";
+import CESTlogo from "../../assets/CESTlogo.webp";
+import LGIAlogo from "../../assets/LGIAlogo.webp";
+import SSCPlogo from "../../assets/SSCPlogo.webp";
 
 export default function Announcements({ announcements = [], old_announcements = [], offices = [] }) {
   const [selectedOffice, setSelectedOffice] = useState("");
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [showOld, setShowOld] = useState(false);
 
-  // Filter based on office and whether we are showing old or current announcements
   const filteredAnnouncements = (showOld ? old_announcements : announcements)
     .filter((a) => selectedOffice === "" || a.office_id === parseInt(selectedOffice));
 
   const getOfficeName = (officeId) => {
-    const office = offices.find(o => o.office_id === officeId);
+    const office = offices.find((o) => o.office_id === officeId);
     return office?.office_name || "General";
-  };
-
-  const formatDate = (dateString) => {
-    if (!dateString) return null;
-    try {
-      return new Date(dateString).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
-    } catch {
-      return null;
-    }
   };
 
   return (
@@ -36,8 +23,8 @@ export default function Announcements({ announcements = [], old_announcements = 
       <Head title="Announcements" />
 
       {/* Header */}
-      <div className="flex items-center justify-center px-4 py-8">
-        <div className="w-full max-w-md">
+      <div className="flex items-center justify-center px-4 py-8 relative">
+        <div className="w-full max-w-md text-center">
           <Link
             href="/"
             className="absolute top-4 left-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition"
@@ -45,23 +32,26 @@ export default function Announcements({ announcements = [], old_announcements = 
             <ArrowLeft className="w-5 h-5 text-gray-600" />
           </Link>
 
-          <div className="flex flex-col items-center justify-center gap-4 mb-8">
-            <Link href="/" className="flex items-center gap-4 hover:scale-105 transition-transform">
-              <img src={logo} alt="DOST Logo" className="w-12 h-12 object-contain" />
-              <img src={setupLogo} alt="SETUP Logo" className="h-12 object-contain" />
-            </Link>
-            <div className="text-center">
-              <h2 className="text-lg font-bold text-gray-900">DOST - Northern Mindanao</h2>
-              <h3 className="text-sm text-gray-600 font-medium">
-                Small Enterprise Technology Upgrading Program
-              </h3>
-            </div>
+          {/* DOST Logo */}
+          <img src={logo} alt="DOST Logo" className="w-12 h-12 mx-auto object-contain mb-2" />
+          <h2 className="text-lg font-bold text-gray-900">DOST - Northern Mindanao</h2>
+
+          {/* Program Logos */}
+          <div className="flex items-center justify-center gap-4 mt-3 flex-wrap">
+                <img src={CESTlogo} alt="CEST Logo" className="h-8 object-contain" />
+                <img src={SSCPlogo} alt="SSCP Logo" className="h-10 object-contain" />
+                <img src={LGIAlogo} alt="LGIA Logo" className="h-10 object-contain" />
           </div>
+
+          <h3 className="mt-4 text-sm text-gray-600 font-medium leading-relaxed">
+            Tri-Web Digital System
+          </h3>
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4">
-        {/* Header with filter & old toggle */}
+        {/* Header with Filter */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl shadow-lg">
@@ -79,7 +69,7 @@ export default function Announcements({ announcements = [], old_announcements = 
             </div>
           </div>
 
-          {/* Dropdowns */}
+          {/* Filters */}
           <div className="flex gap-3">
             <select
               value={selectedOffice}
@@ -99,12 +89,12 @@ export default function Announcements({ announcements = [], old_announcements = 
               className="flex items-center gap-2 px-4 py-3 bg-white border border-gray-200 rounded-xl shadow hover:shadow-md transition text-sm"
             >
               <Clock className="w-4 h-4 text-gray-600" />
-              {showOld ? "View Current" : "View Past"}
+              {showOld ? "View Current" : "View Archive"}
             </button>
           </div>
         </div>
 
-        {/* Announcements List */}
+        {/* Announcement List */}
         {filteredAnnouncements.length > 0 ? (
           <div className="space-y-6">
             {filteredAnnouncements.map((a) => (

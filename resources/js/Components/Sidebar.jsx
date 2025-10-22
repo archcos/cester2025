@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import logo from '../../assets/logo.webp';
-import setupLogo from '../../assets/CESTlogo.webp';
+import LGIAlogo from '../../assets/LGIAlogo.webp';
+import CESTlogo from '../../assets/CESTlogo.webp';
+import SSCPlogo from '../../assets/SSCPlogo.webp';
 import { Link, usePage } from '@inertiajs/react';
 import {
   ChevronDown,
@@ -65,13 +67,28 @@ export default function Sidebar({ isOpen }) {
 
   return (
     <aside className="w-64 bg-white text-gray-800 p-6 transition-all duration-300 min-h-screen shadow-md">
-      <Link
-        href={role === 'user' ? '/dashboard' : '/home'}
-        className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
-      >
-        <img src={logo} alt="Logo" className="w-10 h-10" />
-        <img src={setupLogo} alt="SETUP Logo" className="h-10 object-contain" />
-      </Link>
+    <Link
+      href={role === 'user' ? '/dashboard' : '/home'}
+      className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
+    >
+      <img src={logo} alt="DOST Logo" className="w-10 h-10" />
+
+      {/* 🟢 Dynamically show program logo */}
+      <img
+        src={
+          auth?.user?.program_id === 1
+            ? CESTlogo
+            : auth?.user?.program_id === 2
+            ? LGIAlogo
+            : auth?.user?.program_id === 3
+            ? SSCPlogo
+            : CESTlogo // fallback
+        }
+        alt="Program Logo"
+        className="h-10 object-contain"
+      />
+    </Link>
+
 
       <nav className="space-y-4">
         <Link

@@ -16,6 +16,15 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('email', 100)->unique();
             $table->unsignedSmallInteger('office_id')->nullable(); // in tbl_companies
+            $table->foreign('office_id')
+                ->references('office_id')
+                ->on('tbl_offices')
+                ->onDelete('cascade');
+            $table->unsignedSmallInteger('program_id')->nullable();
+            $table->foreign('program_id')
+                ->references('program_id')
+                ->on('tbl_programs')
+                ->onDelete('set null');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('last_login')->nullable();
             $table->string('first_name', 50);
@@ -25,7 +34,6 @@ return new class extends Migration
             $table->enum('role', ['user','staff','head','rpmo']);
             $table->enum('status', ['inactive','active']);
             $table->softDeletes(); // Adds deleted_at column
-            $table->foreign('office_id')->references('office_id')->on('tbl_offices')->onDelete('cascade');
         });
 
         // Insert admin user
@@ -41,6 +49,7 @@ return new class extends Migration
             'status' => 'active',
             'created_at' => now(),
         ]);
+        
     }
 
     public function down(): void
