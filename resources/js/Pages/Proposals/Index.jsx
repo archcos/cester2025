@@ -15,7 +15,9 @@ import {
   Building2,
   CheckCircle,
   XCircle,
-  AlertCircle
+  AlertCircle,
+  Users,
+  UserCheck
 } from 'lucide-react';
 
 // Helper to format date
@@ -188,6 +190,18 @@ export default function Index({ proposals, filters }) {
                   )}
                   <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     <div className="flex items-center gap-2">
+                      <UserCheck className="w-4 h-4" />
+                      Proponent
+                    </div>
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4" />
+                      Beneficiary
+                    </div>
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <div className="flex items-center gap-2">
                       <Tag className="w-4 h-4" />
                       Program & Type
                     </div>
@@ -248,6 +262,24 @@ export default function Index({ proposals, filters }) {
                         </div>
                       </td>
                     )}
+
+                    <td className="px-6 py-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {proposal.proponent?.proponent_name || 'N/A'}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {proposal.proponent?.sex || '-'}
+                      </div>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {proposal.beneficiary?.beneficiary || 'N/A'}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        Leader: {proposal.beneficiary?.beneficiary_leader || '-'}
+                      </div>
+                    </td>
                     
                     <td className="px-6 py-4">
                       <div className="space-y-1">
@@ -468,6 +500,82 @@ function ProposalModal({ proposal, isOpen, onClose, role }) {
               <p className="text-gray-900 whitespace-pre-wrap">{proposal.details}</p>
             </div>
           </div>
+
+          {/* Proponent Information */}
+          {proposal.proponent && (
+            <div className="bg-purple-50 rounded-xl p-4 border border-purple-200">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <UserCheck className="w-4 h-4 text-purple-600" />
+                Proponent Information
+              </h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-xs text-gray-600 mb-1">Name</p>
+                  <p className="text-sm font-medium text-gray-900">{proposal.proponent.proponent_name}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-600 mb-1">Sex</p>
+                  <p className="text-sm font-medium text-gray-900">{proposal.proponent.sex}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Collaborator Information */}
+          {proposal.collaborator && (
+            <div className="bg-amber-50 rounded-xl p-4 border border-amber-200">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <Users className="w-4 h-4 text-amber-600" />
+                Collaborator Information
+              </h4>
+              <div>
+                <p className="text-xs text-gray-600 mb-1">Name</p>
+                <p className="text-sm font-medium text-gray-900">{proposal.collaborator.collaborator_name}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Beneficiary Information */}
+          {proposal.beneficiary && (
+            <div className="bg-green-50 rounded-xl p-4 border border-green-200">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <Users className="w-4 h-4 text-green-600" />
+                Beneficiary Information
+              </h4>
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Beneficiary Name</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.beneficiary}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Leader Name</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.beneficiary_leader}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Leader Sex</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.beneficiary_leader_sex}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Total Beneficiaries</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.total_beneficiaries}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 pt-2 border-t border-green-200">
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Male Beneficiaries</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.male_beneficiaries}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600 mb-1">Female Beneficiaries</p>
+                    <p className="text-sm font-medium text-gray-900">{proposal.beneficiary.female_beneficiaries}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Modal Footer */}

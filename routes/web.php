@@ -53,6 +53,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::prefix('proposals')->group(function () {
+    // Search routes MUST come before the /{id} route
+    Route::get('/search-proponents', [ProposalController::class, 'searchProponents'])->name('proposals.search-proponents');
+    Route::get('/search-collaborators', [ProposalController::class, 'searchCollaborators'])->name('proposals.search-collaborators');
+    Route::get('/search-beneficiaries', [ProposalController::class, 'searchBeneficiaries'])->name('proposals.search-beneficiaries');
+    
+    // Then the general routes
     Route::get('/', [ProposalController::class, 'index'])->name('proposals.index');
     Route::get('/create/{program_id}', [ProposalController::class, 'create'])->name('proposals.create');
     Route::post('/create/{program_id}', [ProposalController::class, 'store'])->name('proposals.store');

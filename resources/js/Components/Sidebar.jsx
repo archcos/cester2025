@@ -1,54 +1,20 @@
-import React, { useState } from 'react';
+// components/Sidebar.jsx
+import { useState } from "react";
+import { X } from "lucide-react";
+import { Link, usePage } from "@inertiajs/react";
 import logo from '../../assets/logo.webp';
 import LGIAlogo from '../../assets/LGIAlogo.webp';
 import CESTlogo from '../../assets/CESTlogo.webp';
 import SSCPlogo from '../../assets/SSCPlogo.webp';
-import { Link, usePage } from '@inertiajs/react';
-import {
-  ChevronDown,
-  ChevronUp,
-  Building,
-  FileText,
-  ClipboardList,
-  List,
-  LayoutDashboard,
-  Users,
-  FileSignature,
-  FileSearch,
-  User,
-  ShieldUser,
-  Building2,
-  ListTodo,
-  PencilRuler,
-  ChartNoAxesCombined,
-  SquareKanban,
-  HandCoins,
-  ArrowBigLeft,
-  ArrowLeftRight,
-  FileDiff,
-  Megaphone,
-  FilePlus2,
-  UserCheck2,
-  FileUser,
-  ClipboardPlus,
-  View,
-  Eye,
-  ShieldAlert,
-  FileSymlink,
-  FileInput,
-  Check,
-  CheckCheck,
-  Stamp,
-  Files,
-  FilePlus
-} from 'lucide-react';
+import Dropdown from "./Dropdown";
+import SidebarMenuItems from "./SidebarMenuItems";
 
-export default function Sidebar({ isOpen }) {
+export default function Sidebar({ isOpen, onClose }) {
   const [dropdowns, setDropdowns] = useState({
     development: false,
     implementation: false,
     reports: false,
-    proposal: true,
+    user: true,
     transaction: true,
     review: false,
     announce: false,
@@ -65,224 +31,70 @@ export default function Sidebar({ isOpen }) {
   const { auth } = usePage().props;
   const role = auth?.user?.role;
 
-  if (!isOpen) return null;
+  const getHomePage = () => {
+    if (role === 'user') return '/dashboard';
+    if (['irtec', 'ertec', 'rd', 'au'].includes(role)) return '/rd-dashboard';
+    return '/home';
+  };
+
+  const getProgramLogo = () => {
+    switch (auth?.user?.program_id) {
+      case 1:
+        return CESTlogo;
+      case 2:
+        return LGIAlogo;
+      case 3:
+        return SSCPlogo;
+      default:
+        return CESTlogo;
+    }
+  };
 
   return (
-    <aside className="w-64 bg-white text-gray-800 p-6 transition-all duration-300 min-h-screen shadow-md">
-      <Link
-        href={role === 'user' ? '/dashboard' : '/home'}
-        className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
-      >
-        <img src={logo} alt="DOST Logo" className="w-10 h-10" />
-
-        {/* Dynamically show program logo */}
-        <img
-          src={
-            auth?.user?.program_id === 1
-              ? CESTlogo
-              : auth?.user?.program_id === 2
-              ? LGIAlogo
-              : auth?.user?.program_id === 3
-              ? SSCPlogo
-              : CESTlogo // fallback
-          }
-          alt="Program Logo"
-          className="h-10 object-contain"
-        />
-      </Link>
-
-      <nav className="space-y-4">
-        <Link
-          href={role === 'user' ? '/dashboard' : '/home'}
-          className="flex items-center gap-2 px-3 py-2 rounded-md hover:shadow hover:bg-gray-100 transition"
-        >
-          <LayoutDashboard size={18} />
-          {role === 'user' ? 'Dashboard' : 'Overview'}
-        </Link>
-
-        {role === 'head' && (
-          <Dropdown
-            title="Admin Panel"
-            icon={<ShieldUser size={18} />}
-            isOpen={dropdowns.adminpanel}
-            onToggle={() => toggleDropdown('adminpanel')}
-            links={[
-              { label: 'User Management', href: `/admin/users`, icon: <User size={16} /> },
-              { label: 'Blocked Management', href: `/blocked-ips`, icon: <ShieldAlert size={16} /> },
-            ]}
-          />
-        )}
-
-        {(role === 'rpmo' || role === 'staff') && (
-          <Dropdown
-            title="Development"
-            icon={<ChartNoAxesCombined size={18} />}
-            isOpen={dropdowns.development}
-            onToggle={() => toggleDropdown('development')}
-            links={[
-              { label: 'Companies', href: '/companies', icon: <Building2 size={16} /> },
-              { label: 'Projects', href: '/projects', icon: <ClipboardList size={16} /> },
-              { label: 'Activities', href: '/activities', icon: <SquareKanban size={16} /> },
-            ]}
-          />
-        )}
-
-        {(role === 'rpmo' || role === 'staff') && (
-          <Dropdown
-            title="Review & Approval"
-            icon={<UserCheck2 size={18} />}
-            isOpen={dropdowns.review}
-            onToggle={() => toggleDropdown('review')}
-            links={[
-              { 
-                label: 'Internal RTEC Review', 
-                href: `/review-approval?stage=internal_rtec`, 
-                icon: <FileSymlink size={16} /> 
-              },
-              { 
-                label: 'Internal Compliance', 
-                href: `/review-approval?stage=internal_compliance`, 
-                icon: <Check size={16} /> 
-              },
-              { 
-                label: 'External RTEC Review', 
-                href: `/review-approval?stage=external_rtec`, 
-                icon: <FileInput size={16} /> 
-              },
-              { 
-                label: 'External Compliance', 
-                href: `/review-approval?stage=external_compliance`, 
-                icon: <CheckCheck size={16} /> 
-              },
-              { 
-                label: 'Approval', 
-                href: `/review-approval?stage=approval`, 
-                icon: <Stamp size={16} /> 
-              },
-              { 
-                label: 'Draft MOA', 
-                href: '/draft-moa', 
-                icon: <FileSignature size={16} /> 
-              },
-              { 
-                label: 'MOA List', 
-                href: '/moa', 
-                icon: <FileText size={16} /> 
-              },      
-            ]}
-          />
-        )}
-
-        {role === 'rpmo' && (
-          <Dropdown
-            title="Implementation"
-            icon={<PencilRuler size={18} />}
-            isOpen={dropdowns.implementation}
-            onToggle={() => toggleDropdown('implementation')}
-            links={[
-              { label: 'Phase One', href: `/implementation`, icon: <ListTodo size={16} /> },
-              { label: 'Phase Two', href: '/refunds', icon: <HandCoins size={16} /> },
-            ]}
-          />
-        )}
-
-        {(role === 'staff' || role === 'rpmo') && (
-          <Dropdown
-            title="Reports"
-            icon={<ClipboardPlus size={18} />}
-            isOpen={dropdowns.reports}
-            onToggle={() => toggleDropdown('reports')}
-            links={[
-              { label: 'Quarterly Reports', href: '/reports', icon: <ClipboardList size={16} /> },
-            ]}
-          />
-        )}
-
-        <Dropdown
-          title="Announcements"
-          icon={<Megaphone size={18} />}
-          isOpen={dropdowns.announce}
-          onToggle={() => toggleDropdown('announce')}
-          links={[
-            ...((role === 'rpmo' || role === 'head' || role === 'staff')
-              ? [{ label: 'Manage Announcement', href: '/announcements', icon: <FilePlus2 size={16} /> }]
-              : []),
-            {
-              label: 'Check Announcements',
-              href: '/announcements/view',
-              icon: <Eye size={16} />,
-              target: '_blank',
-            },
-          ]}
-        />
-
-        {/* Fixed: Single Manage Proposals dropdown with dynamic program_id */}
-        {role === 'user' && (
-          <Dropdown
-            title="Manage Proposals"
-            icon={<Files size={18} />}
-            isOpen={dropdowns.proposal}
-            onToggle={() => toggleDropdown('proposal')}
-            links={[
-              { 
-                label: 'Create Proposal', 
-                href: `/proposals/create/${auth?.user?.program_id}`, 
-                icon: <FilePlus size={16} /> 
-              },
-              { 
-                label: 'My Proposals', 
-                href: '/proposals', 
-                icon: <FileUser size={16} /> 
-              },
-            ]}
-          />
-        )}
-      </nav>
-    </aside>
-  );
-}
-
-function Dropdown({ title, icon, isOpen, onToggle, links }) {
-  return (
-    <div>
-      <button
-        onClick={onToggle}
-        className="w-full flex justify-between items-center px-3 py-2 rounded-md hover:shadow hover:bg-gray-100 transition font-medium"
-      >
-        <div className="flex items-center gap-2">
-          {icon}
-          <span>{title}</span>
-        </div>
-        {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-      </button>
-
+    <>
+      {/* Mobile overlay - only show on small screens */}
       {isOpen && (
-        <div className="ml-6 mt-2 space-y-1">
-          {links.map((link, idx) =>
-            link.target === "_blank" ? (
-              <a
-                key={idx}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm px-2 py-1 rounded hover:shadow hover:bg-gray-100 transition"
-              >
-                {link.icon}
-                {link.label}
-              </a>
-            ) : (
-              <Link
-                key={idx}
-                href={link.href}
-                className="flex items-center gap-2 text-sm px-2 py-1 rounded hover:shadow hover:bg-gray-100 transition"
-              >
-                {link.icon}
-                {link.label}
-              </Link>
-            )
-          )}
-        </div>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={onClose}
+        />
       )}
-    </div>
+
+      <aside className={`${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } fixed lg:sticky lg:translate-x-0 left-0 top-0 z-50 w-64 bg-white text-gray-800 p-6 shadow-md h-screen lg:max-h-screen overflow-y-auto transition-all duration-300 lg:duration-0`}>
+        
+        {/* Close button for mobile and tablet */}
+        <button
+          onClick={onClose}
+          className="lg:hidden absolute top-4 right-4 p-2 hover:bg-gray-100 rounded"
+        >
+          <X size={20} />
+        </button>
+
+        <div className="mt-10 lg:mt-0">
+          {/* Logo */}
+          <Link
+            href={getHomePage()}
+            className="flex items-center justify-center gap-3 mb-8 hover:opacity-90"
+            onClick={onClose}
+          >
+            <img src={logo} alt="DOST Logo" className="w-10 h-10" />
+            <img src={getProgramLogo()} alt="Program Logo" className="h-10 object-contain" />
+          </Link>
+
+          {/* Navigation Menu */}
+          <nav className="space-y-4">
+            <SidebarMenuItems 
+              role={role} 
+              dropdowns={dropdowns} 
+              toggleDropdown={toggleDropdown}
+              onClose={onClose}
+              getHomePage={getHomePage}
+            />
+          </nav>
+        </div>
+      </aside>
+    </>
   );
 }
